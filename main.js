@@ -17,13 +17,13 @@ resetButton.setAttribute("disabled", true);
 
 function displayTime() {
     const currentTime = new Date(Date.now() - startTime + stopTime);
-    const h = String(currentTime.getHours()-9).padStart(1, '0');
-    const m = String(currentTime.getMinutes()).padStart(1, '0');
-    const s = String(currentTime.getSeconds()).padStart(1, '0');
-    const ms = String(currentTime.getMilliseconds()).slice(0, '1'); 
+    const h = String(currentTime.getHours()-9).padStart(1, 0);
+    const m = String(currentTime.getMinutes()).padStart(1, 0);
+    const s = String(currentTime.getSeconds()).padStart(1, 0);
+    const ms = String(currentTime.getMilliseconds()).slice(0, 1); 
 
     time.textContent = `${h}:${m}:${s}.${ms}`;
-    timeoutID = setTimeout(displayTime, 10);
+    timeoutID = setTimeout(displayTime,10);
 }
 
 startButton.addEventListener('click', () => {
@@ -43,6 +43,7 @@ stopButton.addEventListener('click', function() {
 });
 
 resetButton.addEventListener('click', function() {
+    clearInterval(timeoutID);
     startButton.disabled = false;
     stopButton.disabled = true;
     resetButton.disabled = true;
